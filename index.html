@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ליס משכנתא - ייעוץ ומיחזור משכנתאות</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+ 
+    <style>
+        :root {
+            --primary-color: #2c3e50; /* כחול-אפור כהה */
+            --secondary-color: #34495e; /* כחול-אפור משני */
+            --background-color: #f4f6f9; /* רקע אפרפר בהיר */
+            --accent-color: #e67e22; /* כתום-אפרסק להדגשה */
+            --white-color: #ffffff;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 80px 0;
+            text-align: center;
+            background-image: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1560518883-ce09059ee41F?q=80&w=1973&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin: 0 0 10px 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+
+        .cta-button {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #d35400; /* כתום כהה יותר */
+            transform: translateY(-2px);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        .services-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .service-item {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            width: 300px;
+            text-align: center;
+        }
+
+        .service-item i {
+            font-size: 40px;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .service-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #e8ecf1;
+            padding: 60px 0;
+        }
+        .testimonials h2 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+        .testimonial {
+            background: var(--white-color);
+            padding: 25px;
+            border-radius: 8px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            font-style: italic;
+        }
+        .testimonial-author {
+            text-align: left;
+            margin-top: 15px;
+            font-weight: bold;
+            font-style: normal;
+        }
+/* --- Testimonial Slider --- */
+.testimonial-slider {
+    position: relative; /* מאפשר מיקום אבסולוטי של הכפתורים */
+    background: var(--white-color);
+    padding: 35px 50px; /* ריווח פנימי גדול יותר כדי לפנות מקום לכפתורים */
+    border-radius: 8px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.testimonial-slide {
+    display: none; /* מסתיר את כל ההמלצות כברירת מחדל */
+    text-align: center;
+}
+
+.testimonial-slide.active {
+    display: block; /* מציג רק את ההמלצה הפעילה */
+}
+
+.testimonial-slide p {
+    font-style: italic;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.testimonial-slide .testimonial-author {
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+}
+
+/* עיצוב כפתורי הניווט */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(44, 62, 80, 0.5); /* רקע שקוף למחצה */
+    color: var(--white-color);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.slider-btn:hover {
+    background-color: var(--primary-color);
+}
+
+.prev-btn {
+    right: 10px;
+}
+
+.next-btn {
+    left: 10px;
+}
+
+        /* Form Section */
+        .form-section {
+            padding: 60px 0;
+            background-color: var(--white-color);
+        }
+
+        .form-container {
+            background-color: var(--background-color);
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-form { display: flex; flex-direction: column; }
+        .form-group { margin-bottom: 20px; text-align: right; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
+        .form-group input { width: 100%; padding: 12px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-family: 'Assistant', sans-serif; font-size: 16px; }
+        #successMessage { color: #27ae60; font-weight: bold; margin-top: 20px; display: none; text-align:center; }
+        .privacy-note {
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+            margin-top: 15px;
+        }
+		/* --- WhatsApp Floating Button --- */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25D366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.25);
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h1>הדרך הבטוחה למשכנתא שלכם</h1>
+            <p>ייעוץ מקצועי, אובייקטיבי ואישי ללקיחת משכנתא חדשה או מיחזור משכנתא קיימת בתנאים הטובים ביותר עבורכם.</p>
+            <a href="#contact-form" class="cta-button">לקבלת ייעוץ ראשוני ללא עלות <i class="fa-solid fa-arrow-left"></i></a>
+        </div>
+    </header>
+
+    <main>
+        <section class="services">
+            <div class="container">
+                <h2>השירותים שלנו</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fa-solid fa-house-chimney-user"></i>
+                        <h3>ייעוץ למשכנתא חדשה</h3>
+                        <p>ליווי מלא מההתחלה ועד לקבלת המפתח, בניית תמהיל מותאם אישית וניהול משא ומתן מול הבנקים להשגת הריביות הנמוכות ביותר.</p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                        <h3>מיחזור משכנתא קיימת</h3>
+                        <p>בדיקת כדאיות למיחזור המשכנתא שלכם. תוכלו לחסוך עשרות ומאות אלפי שקלים על ידי התאמת המשכנתא לתנאי השוק הנוכחיים.</p>
+                    </div>
+					
+                </div>
+            </div>
+        </section>
+        
+       <section class="testimonials">
+     <div class="container">
+        <h2>מה לקוחות מספרים</h2>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial-slide active">
+                <p>"הגענו לליס דרך המלצה והבנו מיד שמדובר במקצוען. הוא בנה לנו תמהיל חכם, ניהל את כל הבירוקרטיה מול הבנק וחסך לנו המון כסף וכאב ראש. ממליצים בחום!"</p>
+                <p class="testimonial-author">- משפחת כהן, באר שבע</p>
+            </div>
+
+            <div class="testimonial-slide">
+                <p>"בתור עצמאי, חששתי מאוד מהתהליך. ליס ליווה אותי בסבלנות אין קץ, הסביר כל שלב והשיג לי תנאים שלא חלמתי שאוכל לקבל. אלוף!"</p>
+                <p class="testimonial-author">- דני לוי, אשקלון</p>
+            </div>
+
+            <div class="testimonial-slide">
+                <p>"חשבנו שהמשכנתא שלנו מעולה, אבל החלטנו לבדוק אפשרות למיחזור. ליס מצא דרך לקצץ לנו את ההחזר החודשי וגם לקצר את התקופה. לא ייאמן כמה כסף חסכנו."</p>
+                <p class="testimonial-author">- שרה ויצחק, קרית גת</p>
+            </div>
+
+            <button class="slider-btn prev-btn" id="prevBtn"><i class="fa-solid fa-chevron-right"></i></button>
+            <button class="slider-btn next-btn" id="nextBtn"><i class="fa-solid fa-chevron-left"></i></button>
+        </div>
+    </div>
+</section>
+
+        <section id="contact-form" class="form-section">
+            <div class="container">
+                <div class="form-container">
+                    <h2>רוצים להתחיל לחסוך?</h2>
+                    <p style="text-align:center; margin-top:-15px; margin-bottom:25px;">השאירו פרטים ונחזור אליכם לשיחת אבחון ראשונית, בחינם וללא כל התחייבות.</p>
+                    <form id="leadForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">שם מלא</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">טלפון</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">דוא"ל (אופציונלי)</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                        <button type="submit" class="cta-button">אני רוצה ייעוץ חינם!</button>
+                    </form>
+                     <div id="successMessage">
+                        <h3>תודה רבה!</h3>
+                        <p>הפרטים נשלחו בהצלחה. ניצור קשר בהקדם.</p>
+                    </div>
+                    <p class="privacy-note"><i class="fa-solid fa-lock"></i> פרטיותכם מובטחת במלואה.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer style="text-align:center; padding: 20px; background-color: var(--secondary-color); color: var(--white-color);">
+        <p>&copy; 2025 כל הזכויות שמורות | ליס משכנתא</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('leadForm');
+		const slides = document.querySelectorAll('.testimonial-slide');
+    const nextBtn = document.getElementById('nextBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    let currentSlide = 0;
+
+    // 2. פונקציה שמציגה שקופית ספציפית ומסתירה את השאר
+    function showSlide(n) {
+        // מסתירים את כל השקופיות
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+        });
+        // מציגים את השקופית הנכונה
+        slides[n].classList.add('active');
+    }
+
+    // 3. מאזינים ללחיצות על הכפתורים
+    nextBtn.addEventListener('click', () => {
+        currentSlide++;
+        if (currentSlide >= slides.length) {
+            currentSlide = 0; // חזרה להתחלה
+        }
+        showSlide(currentSlide);
+    });
+
+    prevBtn.addEventListener('click', () => {
+        currentSlide--;
+        if (currentSlide < 0) {
+            currentSlide = slides.length - 1; // חזרה לסוף
+        }
+        showSlide(currentSlide);
+    });
+
+    // 4. הצגת השקופית הראשונה כשהדף נטען
+    showSlide(currentSlide);
+        const successMessage = document.getElementById('successMessage');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzm8tUR9VpjSrT-LfSQq_1omFa6S2QLzlIkscN-Xb5qdG9FY12MZROsuY7v5mdCAz-idA/exec';
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const submitButton = form.querySelector('.cta-button');
+            submitButton.disabled = true;
+            submitButton.textContent = 'שולח...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    console.log('Success!', response);
+                    form.style.display = 'none';
+                    successMessage.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('אירעה שגיאה בשליחת הטופס. אנא נסו שוב.');
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'אני רוצה ייעוץ חינם!';
+                });
+        });
+    </script>
+	<a href="https://wa.me/972586805432?text=היי%2C%20אני%20מעוניין%20בייעוץ%20משכנתא" class="whatsapp-float" target="_blank" aria-label="יצירת קשר בווטסאפ">
+    <i class="fa-brands fa-whatsapp"></i></a>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
